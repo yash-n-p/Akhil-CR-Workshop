@@ -1,0 +1,66 @@
+options message "STARTING session file"
+opt var add p1 ${META_CUR_DIR}/binout*
+xyplot create "Window1"
+window active "Window1"
+window position 200,0
+window active "MetaPost"
+window active "Window1"
+window size 186,166
+window active "MetaPost"
+window shownormal "MetaPost"
+window size 186,166
+window active "Window1"
+window position 0,0
+window active "MetaPost"
+window active "Window1"
+window size 1456,861
+window active "MetaPost"
+window active "Window1"
+window maximize "Window1"
+window size 1456,861
+window active "Window1"
+xyplot model load lsdyna ${p1}
+xyplot read lsdyna "Window1"  "${p1}" nodout-Node 1000001 Magnitude_of_acceleration_(ma)
+xyplot curve select "Window1" "1"
+unitsystem apply mmkms
+xyplot curve rfunction cfc180 "Window1" 1
+xyplot newreserve 2 1
+xyplot axisoptions yaxis deactive "Window1" 0 0-5
+xyplot axisoptions yaxis active "Window1" 0 1
+xyplot axisoptions ylabel set "Window1" 0 "HIC values"
+xyplot axisoptions yaxis add "Window1" 0
+xyplot curve set assign yaxis "Window1" 2 1
+xyplot curve function hic "Window1" 1 15
+xyplot curve deselect "Window1" "1"
+xyplot curve select "Window1" "2"
+xyplot options save info off
+xyplot options save specialformat column
+xyplot output file "Window1" "HIC15.csv" 2
+xyplot curve deselect "Window1" "2"
+xyplot options read prefix ""
+xyplot options read customname ""
+xyplot options read customytext ""
+xyplot options read customylabel ""
+xyplot options read customxlabel ""
+xyplot options read customheader ""
+xyplot loadtomodel active
+xyplot read lsdyna "Window1" "${p1}" jntforc-Joint 1000002 Z_force_(zf)
+xyplot curve select "Window1" "3"
+unitsystem apply mmkms
+xyplot curve rfunction cfc060 "Window1" 3
+xyplot curve deselect "Window1" "3"
+xyplot curve select "Window1" "3"
+xyplot options save specialformat column
+xyplot output file "Window1" "Neck_Fz.csv" 3
+xyplot options read prefix ""
+xyplot options read customname ""
+xyplot options read customytext ""
+xyplot options read customylabel ""
+xyplot options read customxlabel ""
+xyplot options read customheader ""
+xyplot loadtomodel active
+xyplot read lsdyna "Window1" "${p1}" deforc-SpringDamper 1000011 Relative_displacement/rotation_(dis)
+xyplot curve deselect "Window1" "3"
+xyplot curve select "Window1" "4"
+xyplot options save specialformat column
+xyplot output file "Window1" "chest_def.csv" 4

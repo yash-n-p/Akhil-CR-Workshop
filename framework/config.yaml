@@ -1,0 +1,32 @@
+parameters:
+  'delta velocity' :
+        type :  dynaParameter
+        parameter : DV
+        default : 45
+        max : 60
+        min : 40
+        distribution: Uniform
+  'Airbag leakage' :
+        type :  dynaParameter
+        parameter : ABLEAK
+        default : 1
+        max : 1.5
+        min : 0.5
+        distribution: Uniform
+  'Angle of impact' :
+        type :  dynaParameter
+        parameter : PDOF_H
+        default : 0
+        max : 5
+        min : -5
+        distribution: Uniform
+  'pretensioner force' :
+        type :  dynaParameter
+        parameter : PMAXF
+        default : 1.4
+        max : 1.7
+        min : 1.2
+        distribution: Uniform
+  'gender' :
+        type : dynaInclude
+        parameter : ['50F.k','50M.k']
